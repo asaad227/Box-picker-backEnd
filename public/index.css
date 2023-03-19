@@ -1,0 +1,27 @@
+
+th{
+    padding: 10px;
+    font-size: 26px;
+    /* color:rgb(49, 12, 12); */
+    font-weight: bolder;
+    font-style: oblique;
+  }
+  /* .nameP{
+    color: black;
+  } */
+  td {
+   
+    padding: 10px;
+    font-size: 26px;
+    font-style: oblique;
+  
+  }
+  
+  table {
+    border-collapse: collapse;
+    /* width: 40%; */
+  }
+  
+  th {
+    height: 20px;
+  }
