@@ -1,30 +1,27 @@
 import pkg from 'mongodb';
 const {MongoClient} = pkg;
-const connectionString = process.env.ATLAS_URI
+const connectionString = process.env.ATLAS_URI;
 const client = new MongoClient(connectionString,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 let dbConnection;
+
 export async function connectToServer(callback) {
+  const result = await client.connect(function (err, db) {
+    if (err || !db) {
+      return callback(err);
+    }
 
-	const result = await client.connect((err, db)=>{
-        if(err || !db){
-            return callback(err)
-        }
+    dbConnection = db.db('game');
+    console.log('Successfully connected to MongoDB.');
 
-        dbConnection = db.db("game");
+    return callback();
+  });
 
-        console.log("Successfully connected to mongoDb.");
-
-        return callback()
-
-    })
-
-    return result;
+  return result;
 }
-
-export async function getDb(){
-    return await dbConnection;
+export async function getDb() {
+  return await dbConnection;
 }
