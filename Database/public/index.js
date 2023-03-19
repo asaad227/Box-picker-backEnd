@@ -1,7 +1,7 @@
 
 
 async function getUsers() {
-    let response = await fetch(`http://localhost:5000/game`, {
+    let response = await fetch(`../netlify/functions/get_game`, {
       method: "GET",
     });
     let data = await response.json();
