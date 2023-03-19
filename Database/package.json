@@ -1,15 +1,10 @@
-
 {
-  "name": "database",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "box-picker-backend",
+  "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint .",
-    "format": "prettier --single-quote --check .",
-    "prepare": "cd ../ && husky install server/.husky"
+    "start": "nodemon server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -18,21 +13,8 @@
     "mongodb": "^3.6.6"
   },
   "devDependencies": {
-    "eslint": "^8.0.0",
-    "husky": "^7.0.4",
-    "lint-staged": "^11.2.3",
-    "nodemon": "^2.0.12",
-    "prettier": "^2.4.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --single-quote --write",
-      "eslint --fix"
-    ]
+    "eslint": "^8.36.0",
+    "nodemon": "^2.0.21",
+    "prettier": "^2.8.4"
   }
 }
