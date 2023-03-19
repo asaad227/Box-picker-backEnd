@@ -1,4 +1,5 @@
-const {MongoClient} = require('mongodb');
+import pkg from 'mongodb';
+const {MongoClient} = pkg;
 const connectionString = process.env.ATLAS_URI
 const client = new MongoClient(connectionString,{
     useNewUrlParser: true,
