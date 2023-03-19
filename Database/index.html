@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1>MongoDB with Netlify Functions</h1>
+        <ul id="movies"></ul>
+        <script>
+            (async () => {
+                let results = await fetch("../Database/server.js").then(response => response.json());
+                console.log("result", results)
+                results.forEach(result => {
+                    const listItem = document.createElement("li");
+                    listItem.innerText = result.name;
+                    document.getElementById("movies").appendChild(listItem);
+                });
+            })();
+        </script>
+    </body>
+</html>

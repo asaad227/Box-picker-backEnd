@@ -1,4 +1,5 @@
 import express from 'express';
+import "dotenv/config";
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /listings.
@@ -11,7 +12,7 @@ import { getDb } from '../db/conn.js';
 recordRoutes.get('/game', async function (req, res) {
   const dbConnect = await getDb();
   await dbConnect
-    .collection('users')
+    .collection(process.env.MONGODB_COLLECTION)
     .find({})
     .limit(50)
     .toArray(function (err, result) {
@@ -29,7 +30,7 @@ recordRoutes.get('/game', async function (req, res) {
 recordRoutes.post('/game', async (req, res) => {
   const dbConnect = await getDb();
   const result = await dbConnect
-    .collection('users')
+    .collection(process.env.MONGODB_COLLECTION)
     .insertOne(req.body);
 
   console.log(

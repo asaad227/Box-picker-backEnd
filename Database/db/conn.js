@@ -1,6 +1,6 @@
 import pkg from 'mongodb';
 const {MongoClient} = pkg;
-const connectionString = process.env.ATLAS_URI;
+const connectionString = process.env.MONGODB_URI;
 const client = new MongoClient(connectionString,{
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -14,7 +14,7 @@ export async function connectToServer(callback) {
       return callback(err);
     }
 
-    dbConnection = db.db('game');
+    dbConnection = db.db(process.env.MONGODB_DATABASE);
     console.log('Successfully connected to MongoDB.');
 
     return callback();
