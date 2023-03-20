@@ -4,10 +4,10 @@ import "dotenv/config";
 import express from 'express';
 import cors from 'cors';
 // get MongoDB driver connection
-import { connectToServer } from './db/conn.js';
+import { connectToServer } from '../public/get_leaderboard/get_leaderboard.js';
 import recordRoutes from './routes/users.js';
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 const app = express();
 
 app.use(cors());

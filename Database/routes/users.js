@@ -6,7 +6,7 @@ import "dotenv/config";
 const recordRoutes = express.Router();
 
 // This will help us connect to the database
-import { getDb } from '../db/conn.js';
+import { getDb } from '../../public/get_leaderboard/get_leaderboard.js';
 
 // This function will get a list of all the records.
 recordRoutes.get('/game', async function (req, res) {
