@@ -1,22 +1,51 @@
 // Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
-const { MongoClient } = require("mongodb");
+import pkg from 'mongodb';
+const {MongoClient} = pkg;
+const connectionString = process.env.MONGODB_URI;
+const client = new MongoClient(connectionString,{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-const mongoClient = new MongoClient(process.env.MONGODB_URI);
-
-const clientPromise = mongoClient.connect();
+let dbConnection;
 
 const handler = async () => {
-    try {
-        const database = (await clientPromise).db(process.env.MONGODB_DATABASE);
-        const collection = database.collection(process.env.MONGODB_COLLECTION);
-        const results = await collection.find({}).limit(10).toArray();
-        return {
-            statusCode: 200,
-            body: JSON.stringify(results),
-        }
-    } catch (error) {
-        return { statusCode: 500, body: error.toString() }
+  async function connectToServer(callback) {
+    const result = await client.connect(function (err, db) {
+      if (err || !db) {
+        return callback(err);
+      }
+  
+      dbConnection = db.db(process.env.MONGODB_DATABASE);
+      console.log('Successfully connected to MongoDB.');
+  
+      return callback();
+    });
+  
+    return result;
+  }
+  const dbConnect = dbConnection;
+  await dbConnect
+    .collection(process.env.MONGODB_COLLECTION)
+    .find({})
+    .limit(50)
+    .toArray(function (err, result) {
+      if (err) {
+        res.status(400).send('Error fetching game!');
+      } else {
+        res.json({
+          success: true,
+          payload: result,
+        });
+      }
+    });
+  connectToServer(function (err) {
+    if (err) {
+      console.error(err);
+      process.exit();
     }
+  });
 }
 
-module.exports = { handler }
+export default handler;
+

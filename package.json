@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "mongodb": "^5.1.0"
   }
