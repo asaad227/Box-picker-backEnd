@@ -865,7 +865,7 @@ function winner(){
 
 async function fetchPostUsers() {
   
-    let response = await fetch(`./get_leaderboard`, {
+    let response = await fetch(`http://localhost:5000/game`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -880,7 +880,7 @@ async function fetchPostUsers() {
  
 
   async function getUsers() {
-    let response = await fetch(`./get_leaderboard`, {
+    let response = await fetch(`http://localhost:5000/game`, {
       method: "GET",
     });
     let data = await response.json();

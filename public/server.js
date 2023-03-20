@@ -7,7 +7,7 @@ import cors from 'cors';
 import { connectToServer } from './get_leaderboard/get_leaderboard.js';
 import recordRoutes from './routes/users.js';
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(cors());
