@@ -9,7 +9,7 @@ const recordRoutes = express.Router();
 import { getDb } from '../get_leaderboard/get_leaderboard.js';
 
 // This function will get a list of all the records.
-recordRoutes.get('/game', async function (req, res) {
+recordRoutes.get('/', async function (req, res) {
   const dbConnect = await getDb();
   await dbConnect
     .collection(process.env.MONGODB_COLLECTION)
@@ -27,7 +27,7 @@ recordRoutes.get('/game', async function (req, res) {
     });
 });
 
-recordRoutes.post('/game', async (req, res) => {
+recordRoutes.post('/', async (req, res) => {
   const dbConnect = await getDb();
   const result = await dbConnect
     .collection(process.env.MONGODB_COLLECTION)
